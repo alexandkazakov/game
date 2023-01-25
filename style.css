@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 50px;
+    color: black;
+}
+
+.container {
+    width: min(100% - 15px, 540px);
+    margin-inline: auto;
+    padding: 30px 0;
+    display: grid;
+    grid-template-rows: repeat(4, 100px);
+    grid-template-columns: repeat(4, 100px);
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid crimson;
+    border-radius: 5px;
+    transition: transform .2s ease-in-out, background-color .2s ease-in-out, color .2s ease-in-out;
+}
+
+.card-rotate {
+    transform: rotate3D(0, 1, 0, 170deg);
+    background-color: crimson;
+    color: transparent;
+}
+
+.repeat-btn {
+    display: none;
+    grid-column: 2 / span 2;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #990B27;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.repeat-btn:hover {
+    background-color: #C91136;
+}
+
+.repeat-btn:active {
+    background-color: crimson;
+}
+
+.repeat-btn-active {
+    display: block;
+}
