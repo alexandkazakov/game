@@ -39,6 +39,11 @@
         repeatBtn.textContent = 'Сыграть еще раз';
         repeatBtn.classList.add('repeat-btn');
         container.append(repeatBtn);
+
+        console.log(mixedNumbers[0], mixedNumbers[1], mixedNumbers[2], mixedNumbers[3]); // решение
+        console.log(mixedNumbers[4], mixedNumbers[5], mixedNumbers[6], mixedNumbers[7]); // решение
+        console.log(mixedNumbers[8], mixedNumbers[9], mixedNumbers[10], mixedNumbers[11]); // решение
+        console.log(mixedNumbers[12], mixedNumbers[13], mixedNumbers[14], mixedNumbers[15]); // решение
     }
 
     function rotateCard() {
@@ -65,30 +70,34 @@
                     countOpenCards = 0;
                 };
 
-                repeatGame();
-                // let rotatedCards = document.querySelectorAll('.card-rotate');
-
-                // if (rotatedCards.length === 0) {
-                //     rotatedCards.forEach((card) => {
-                //         repeatGame();
-                //     })
-                // }
+                let rotatedCards = document.querySelectorAll('.card-rotate');
+                if (rotatedCards.length === 0) {
+                    repeatGame();
+                }
             });
         })
     }
 
     function repeatGame() {
-        let rotatedCards = document.querySelectorAll('.card-rotate');
+        let visibleCards = document.querySelectorAll('.card');
         let repeatBtn = document.querySelector('.repeat-btn');
 
-        if (rotatedCards.length === 0) {
-            repeatBtn.classList.add('repeat-btn-active');
-        }
-
+        repeatBtn.classList.add('repeat-btn-active');
+        
         repeatBtn.addEventListener('click', () => {
-            rotatedCards.forEach((card) => {
-                card.classList.add('card-rotate');
-            });
+            let numbers = generateNumbers();
+            let mixedNumbers = mixNumbers(numbers);
+            
+            console.log(mixedNumbers[0], mixedNumbers[1], mixedNumbers[2], mixedNumbers[3]); // решение
+            console.log(mixedNumbers[4], mixedNumbers[5], mixedNumbers[6], mixedNumbers[7]); // решение
+            console.log(mixedNumbers[8], mixedNumbers[9], mixedNumbers[10], mixedNumbers[11]); // решение
+            console.log(mixedNumbers[12], mixedNumbers[13], mixedNumbers[14], mixedNumbers[15]); // решение
+            
+            for (let i = 0; i < 16; ++i) {
+                visibleCards[i].classList.add('card-rotate');
+                visibleCards[i].textContent = mixedNumbers[i];
+            }
+
             repeatBtn.classList.remove('repeat-btn-active');
         })
     }

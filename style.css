@@ -34,7 +34,6 @@ body {
 }
 
 .repeat-btn {
-    display: none;
     grid-column: 2 / span 2;
     width: 100%;
     padding: 10px;
@@ -45,6 +44,9 @@ body {
     font-size: 20px;
     border-radius: 5px;
     cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease-in-out, background-color .3s ease-in-out;
 }
 
 .repeat-btn:hover {
@@ -56,5 +58,6 @@ body {
 }
 
 .repeat-btn-active {
-    display: block;
+    opacity: 1;
+    visibility: visible;
 }
