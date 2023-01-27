@@ -41,6 +41,9 @@
         timer.classList.add('timer');
         timer.textContent = `${timerValue} sec`;
         document.body.prepend(timer);
+        setTimeout(() => {
+            timer.classList.add('active');
+        }, 500);
 
         let interval = setInterval(() => {
             timer.textContent = `${timerValue} sec`;

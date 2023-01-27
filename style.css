@@ -20,6 +20,9 @@ body {
     padding: 20px;
     text-align: center;
     font-family: Menlo, Monaco, 'Courier New', monospace;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-in-out;
 }
 
 .container {
