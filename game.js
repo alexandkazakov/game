@@ -35,6 +35,30 @@
         let rows = document.querySelector('.input-height');
         let count = columns.value * rows.value;
 
+        let timer = document.createElement('div');
+        let timerInput = document.querySelector('.timer-input');
+        let timerValue = timerInput.value;
+        timer.classList.add('timer');
+        timer.textContent = `${timerValue} sec`;
+        document.body.prepend(timer);
+
+        let interval = setInterval(() => {
+            timer.textContent = `${timerValue} sec`;
+            if (timerValue === 0) {
+                clearInterval(interval);
+                let finishGame = document.createElement('div');
+                finishGame.classList.add('span-finish');
+                finishGame.textContent = 'gameOver';
+                container.append(finishGame);
+                finishGame.classList.add('active');
+                setTimeout(() => {
+                    location.reload()
+                }, 1000);
+            }
+            timerValue--;
+
+        }, 1000);
+
         if (+columns.value === 2) {
             container.classList.add('container-columns-2');
         } else if (+columns.value === 6) {
@@ -183,7 +207,7 @@
             settingTimerDesc.textContent = 'timerSize:';
 
             let settingTimerInput = document.createElement('input');
-            settingTimerInput.classList.add('field-input');
+            settingTimerInput.classList.add('field-input', 'timer-input');
             settingTimerInput.value = 60;
             let settingTimerSec = document.createElement('span');
             settingTimerSec.textContent = 'sec';
