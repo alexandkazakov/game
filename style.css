@@ -26,6 +26,45 @@ body {
     gap: 20px;
 }
 
+.container-400 {
+    width: min(100% - 15px, 400px);
+}
+
+.container-columns-2 {
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 100px;
+}
+
+.container-rows-2 {
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.container-columns-6 {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.container-rows-6 {
+    grid-template-rows: repeat(6, 1fr);
+}
+
+.container-columns-8 {
+    grid-template-columns: repeat(8, 1fr);
+    font-size: 30px;
+}
+
+.container-rows-8 {
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.container-columns-10 {
+    grid-template-columns: repeat(10, 1fr);
+    font-size: 20px;
+}
+
+.container-rows-10 {
+    grid-template-rows: repeat(10, 1fr);
+}
+
 .card {
     display: flex;
     justify-content: center;
@@ -57,7 +96,7 @@ body {
 }
 
 .repeat-btn {
-    grid-column: 2 / span 2;
+    grid-column: 1 / -1;
     width: 100%;
     padding: 10px;
     border: none;
@@ -78,6 +117,10 @@ body {
 
 .repeat-btn:active {
     background-color: crimson;
+}
+
+.repeat-btn-wide {
+    grid-column: 1 / -1;
 }
 
 .start-btn {

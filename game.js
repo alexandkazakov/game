@@ -2,9 +2,12 @@
     
     function generateNumbers() {
         let numbers = [];
+        let columns = document.querySelector('.input-width');
+        let rows = document.querySelector('.input-height');
+        let count = columns.value * rows.value;
         
-        while(numbers.length != 16) {
-            let firstNumber = Math.round(Math.random() * 7) + 1;
+        while (numbers.length != count) {
+            let firstNumber = Math.round(Math.random() * (count / 2 - 1)) + 1;
             if (numbers.includes(firstNumber)) continue;
             let secondNumber = firstNumber;
             numbers.push(firstNumber, secondNumber);
@@ -28,8 +31,31 @@
         let container = document.getElementById('game');
         let numbers = generateNumbers();
         let mixedNumbers = mixNumbers(numbers);
+        let columns = document.querySelector('.input-width');
+        let rows = document.querySelector('.input-height');
+        let count = columns.value * rows.value;
 
-        for (let i = 0; i < 16; ++i) {
+        if (+columns.value === 2) {
+            container.classList.add('container-columns-2');
+        } else if (+columns.value === 6) {
+            container.classList.add('container-columns-6');
+        } else if (+columns.value === 8) {
+            container.classList.add('container-columns-8');
+        } else if (+columns.value === 10) {
+            container.classList.add('container-columns-10');
+        };
+
+        if (+rows.value === 2) {
+            container.classList.add('container-rows-2');
+        } else if (+rows.value === 6) {
+            container.classList.add('container-rows-6');
+        } else if (+rows.value === 8) {
+            container.classList.add('container-rows-8');
+        } else if (+rows.value === 10) {
+            container.classList.add('container-rows-10');
+        };
+
+        for (let i = 0; i < count; ++i) {
             let card = document.createElement('div');
             card.classList.add('card', 'card-rotate');
             card.textContent = mixedNumbers[i];
@@ -87,6 +113,9 @@
     function repeatGame() {
         let visibleCards = document.querySelectorAll('.card');
         let repeatBtn = document.querySelector('.repeat-btn');
+        let columns = document.querySelector('.input-width');
+        let rows = document.querySelector('.input-height');
+        let count = columns.value * rows.value;
 
         repeatBtn.classList.add('btn-active');
         
@@ -100,7 +129,7 @@
             console.log(mixedNumbers[8], mixedNumbers[9], mixedNumbers[10], mixedNumbers[11]); // решение
             console.log(mixedNumbers[12], mixedNumbers[13], mixedNumbers[14], mixedNumbers[15]); // решение
             
-            for (let i = 0; i < 16; ++i) {
+            for (let i = 0; i < count; ++i) {
                 visibleCards[i].classList.add('card-rotate');
                 visibleCards[i].textContent = mixedNumbers[i];
             }
@@ -142,12 +171,12 @@
             settingFieldDesc.textContent = 'fieldSize:';
 
             let settingFieldInputWidth = document.createElement('input');
-            settingFieldInputWidth.classList.add('field-input');
+            settingFieldInputWidth.classList.add('field-input', 'input-width');
             settingFieldInputWidth.value = 4;
             let settingFieldX = document.createElement('span');
             settingFieldX.textContent = 'X';
             let settingFieldInputHeight = document.createElement('input');
-            settingFieldInputHeight.classList.add('field-input', 'field-input-height');
+            settingFieldInputHeight.classList.add('field-input', 'field-input-height', 'input-height');
             settingFieldInputHeight.value = 4;
 
             let settingTimerDesc = document.createElement('span');
@@ -179,14 +208,19 @@
             container.append(settingBlock);
 
             settingBtn.addEventListener('click', () => {
+                if (((settingFieldInputHeight.value % 2) !== 0) || settingFieldInputHeight.value < 2 || settingFieldInputHeight.value > 10) {
+                    settingFieldInputHeight.value = 4;
+                    console.log(settingFieldInputHeight.value);
+                };
+                if (((settingFieldInputWidth.value % 2) !== 0) || settingFieldInputWidth.value < 2 || settingFieldInputWidth.value > 10) {
+                    settingFieldInputWidth.value = 4;
+                    console.log(settingFieldInputWidth.value);
+                }
                 settingBlock.classList.remove('setting-active');
                 document.body.classList.remove('body-color');
                 createCard();
                 rotateCard();
             });
         });
-
-        // createCard();
-        // rotateCard();
     });
 })();
