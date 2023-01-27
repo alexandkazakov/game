@@ -1,4 +1,5 @@
 (() => {
+    
     function generateNumbers() {
         let numbers = [];
         
@@ -33,6 +34,10 @@
             card.classList.add('card', 'card-rotate');
             card.textContent = mixedNumbers[i];
             container.append(card);
+
+            setTimeout(() => {
+                card.classList.add('card-visible');
+            }, 500);
         }
 
         let repeatBtn = document.createElement('button');
@@ -40,6 +45,7 @@
         repeatBtn.classList.add('repeat-btn');
         container.append(repeatBtn);
 
+        console.log('Первая раскладка:');
         console.log(mixedNumbers[0], mixedNumbers[1], mixedNumbers[2], mixedNumbers[3]); // решение
         console.log(mixedNumbers[4], mixedNumbers[5], mixedNumbers[6], mixedNumbers[7]); // решение
         console.log(mixedNumbers[8], mixedNumbers[9], mixedNumbers[10], mixedNumbers[11]); // решение
@@ -82,12 +88,13 @@
         let visibleCards = document.querySelectorAll('.card');
         let repeatBtn = document.querySelector('.repeat-btn');
 
-        repeatBtn.classList.add('repeat-btn-active');
+        repeatBtn.classList.add('btn-active');
         
         repeatBtn.addEventListener('click', () => {
             let numbers = generateNumbers();
             let mixedNumbers = mixNumbers(numbers);
             
+            console.log('Новая раскладка:')
             console.log(mixedNumbers[0], mixedNumbers[1], mixedNumbers[2], mixedNumbers[3]); // решение
             console.log(mixedNumbers[4], mixedNumbers[5], mixedNumbers[6], mixedNumbers[7]); // решение
             console.log(mixedNumbers[8], mixedNumbers[9], mixedNumbers[10], mixedNumbers[11]); // решение
@@ -98,12 +105,88 @@
                 visibleCards[i].textContent = mixedNumbers[i];
             }
 
-            repeatBtn.classList.remove('repeat-btn-active');
+            repeatBtn.classList.remove('btn-active');
         })
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        createCard();
-        rotateCard();
+        let container = document.getElementById('game');
+        setTimeout(() => {
+            document.body.classList.add('body-color');
+        }, 500);
+
+        let startBtn = document.createElement('button');
+        startBtn.textContent = 'startGame';
+        startBtn.classList.add('start-btn');
+        container.append(startBtn);
+
+        setTimeout(() => {
+            startBtn.classList.add('btn-active');
+        }, 1200);
+
+        startBtn.addEventListener('click', () => {
+            setTimeout(() => {
+                settingBlock.classList.add('setting-active');
+            }, 500);
+
+            startBtn.classList.add('start-btn-click');
+
+            let settingBlock = document.createElement('div');
+            settingBlock.classList.add('setting');
+
+            let settingTitle = document.createElement('h2');
+            settingTitle.classList.add('setting-title');
+            settingTitle.textContent = 'SETTING';
+
+            let settingFieldDesc = document.createElement('span');
+            settingFieldDesc.textContent = 'fieldSize:';
+
+            let settingFieldInputWidth = document.createElement('input');
+            settingFieldInputWidth.classList.add('field-input');
+            settingFieldInputWidth.value = 4;
+            let settingFieldX = document.createElement('span');
+            settingFieldX.textContent = 'X';
+            let settingFieldInputHeight = document.createElement('input');
+            settingFieldInputHeight.classList.add('field-input', 'field-input-height');
+            settingFieldInputHeight.value = 4;
+
+            let settingTimerDesc = document.createElement('span');
+            settingTimerDesc.textContent = 'timerSize:';
+
+            let settingTimerInput = document.createElement('input');
+            settingTimerInput.classList.add('field-input');
+            settingTimerInput.value = 60;
+            let settingTimerSec = document.createElement('span');
+            settingTimerSec.textContent = 'sec';
+
+            let settingBtn = document.createElement('button');
+            settingBtn.classList.add('setting-btn');
+            settingBtn.textContent = 'start >';
+            
+
+            settingBlock.append(settingTitle);
+            settingBlock.append(settingFieldDesc);
+            settingBlock.append(settingFieldInputWidth);
+            settingBlock.append(settingFieldX);
+            settingBlock.append(settingFieldInputHeight);
+
+            settingBlock.append(settingTimerDesc);
+            settingBlock.append(settingTimerInput);
+            settingBlock.append(settingTimerSec);
+
+            settingBlock.append(settingBtn);
+            
+            container.append(settingBlock);
+
+            settingBtn.addEventListener('click', () => {
+                settingBlock.classList.remove('setting-active');
+                document.body.classList.remove('body-color');
+                createCard();
+                rotateCard();
+            });
+        });
+
+        // createCard();
+        // rotateCard();
     });
 })();

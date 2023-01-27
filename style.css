@@ -1,20 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 50px;
     color: black;
+    background-color: #fff;
+    transition: background-color .5s ease-in-out;
+}
+
+.body-color {
+    background-color: crimson;
 }
 
 .container {
-    width: min(100% - 15px, 540px);
+    width: min(100% - 15px, 700px);
     margin-inline: auto;
-    padding: 30px 0;
+    padding: 30px;
     display: grid;
-    grid-template-rows: repeat(4, 100px);
-    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    justify-content: center;
 }
 
 .card {
@@ -22,9 +31,23 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border: 1px solid crimson;
     border-radius: 5px;
-    transition: transform .2s ease-in-out, background-color .2s ease-in-out, color .2s ease-in-out;
+    background-color: white;
+    border: 1px solid crimson;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform .2s ease-in-out, background-color .2s ease-in-out, color .2s ease-in-out, opacity .5s ease-in-out;
+}
+
+.card:after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
+.card-visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 .card-rotate {
@@ -57,7 +80,116 @@ body {
     background-color: crimson;
 }
 
-.repeat-btn-active {
+.start-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    padding: 50px 70px;
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+    font-size: 50px;
+    color: white;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-in-out, transform .3s ease-in-out, background-color .3s ease-in-out, color .2s ease-in-out;
+}
+
+.start-btn:hover {
+    background-color: #333;
+}
+
+.start-btn-click {
+    transform: translateX(-50%) translateY(calc(-50% + 10px)) rotate3d(1, 0, 1, 180deg);
+}
+
+.setting {
+    position: absolute;
+    width: 540px;
+    min-height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) rotate3d(0, 1, 1, 180deg);
+    padding: 70px 50px 100px 50px;
+    background-color: black;
+    color: white;
+    transition: transform .3s ease-in-out;
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+    font-size: 30px;
+    line-height: 160%;
+    text-align: center;
+}
+
+.setting-active {
+    transform: translateX(-50%) translateY(-50%) rotate3d(0, 0, 0, 0deg);
+}
+
+.setting-title {
+    margin: 0;
+    margin-bottom: 30px;
+    color: white;
+    font-size: 70px;
+}
+
+.field-input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    width: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+}
+
+.field-input:focus {
+    outline: none;
+    background-color: #333;
+}
+
+.field-input:hover {
+    outline: none;
+    background-color: #666;
+}
+
+.field-input-height {
+    margin-right: 0;
+}
+
+.setting-btn {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    padding: 0;
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+    font-size: 30px;
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.setting-btn:hover {
+    background-color: #666;
+}
+
+.setting-btn:active {
+    background-color: #333;
+}
+
+.btn-active {
     opacity: 1;
     visibility: visible;
+}
+
+@media (max-width: 540px) {
+    .repeat-btn {
+        grid-column: 1 / -1;
+    }
 }
