@@ -76,11 +76,6 @@
                         }
                         countOpenCards = 0;
                         timerRun();
-                        console.log('Next time:'); // решение
-                        console.log(numbers[0], numbers[1], numbers[2], numbers[3]); // решение
-                        console.log(numbers[4], numbers[5], numbers[6], numbers[7]); // решение
-                        console.log(numbers[8], numbers[9], numbers[10], numbers[11]); // решение
-                        console.log(numbers[12], numbers[13], numbers[14], numbers[15]); // решение
                     }, 250);
                 })
             };
@@ -225,11 +220,6 @@
                                 cards[i].textContent = numbers[i];
                             }
                             timerRun();
-                            console.log('Next time:'); // решение
-                            console.log(numbers[0], numbers[1], numbers[2], numbers[3]); // решение
-                            console.log(numbers[4], numbers[5], numbers[6], numbers[7]); // решение
-                            console.log(numbers[8], numbers[9], numbers[10], numbers[11]); // решение
-                            console.log(numbers[12], numbers[13], numbers[14], numbers[15]); // решение
                         }, 250);
                     })
                 };
@@ -286,7 +276,7 @@
         settingsBtn.classList.add('settings__btn');
 
         settingsTitle.textContent = 'SETTING';
-        settingsFieldLabel.textContent = 'field size (2/4/6/8/10): ';
+        settingsFieldLabel.textContent = 'field size: ';
         settingsFieldInput.type = 'number';
         settingsFieldInput.step = 2;
         settingsFieldInput.min = 2;
